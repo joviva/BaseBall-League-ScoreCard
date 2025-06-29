@@ -1,0 +1,36 @@
+{
+  "name": "Victor Lebron Little League - Baseball Scorecard",
+  "short_name": "Baseball Scorecard",
+  "description": "Professional digital baseball scorecard application for tracking games, innings, and player statistics",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#2a5298",
+  "theme_color": "#1e3c72",
+  "orientation": "any",
+  "scope": "./",
+  "lang": "en-US",
+  "icons": [
+    {
+      "src": "apple-touch-icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["sports", "utilities"],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "New Game",
+      "short_name": "New Game",
+      "description": "Start a new baseball game scorecard",
+      "url": "./index.html",
+      "icons": [
+        {
+          "src": "apple-touch-icon.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
+}

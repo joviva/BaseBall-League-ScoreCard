@@ -1,0 +1,1694 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Digital baseball scorecard for Victor Lebron Little League. Track innings, scores, and player statistics with professional features." />
+    <meta
+      name="keywords"
+      content="baseball, scorecard, little league, victor lebron, sports, scoring" />
+    <meta name="author" content="Victor Lebron Little League" />
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Victor Lebron Little League - Baseball Scorecard" />
+    <meta
+      property="og:description"
+      content="Professional digital baseball scorecard application" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="apple-touch-icon.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json" />
+
+    <title>Victor Lebron Little League - Baseball Scorecard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="scorecard-container">
+      <header class="scorecard-header">
+        <h1>VICTOR LEBRON LITTLE LEAGUE</h1>
+        <div class="header-info">
+          <div class="info-row">
+            <span class="label">Home Team:</span>
+            <input
+              type="text"
+              id="homeTeam"
+              placeholder="Home Team"
+              class="team-input" />
+          </div>
+          <div class="info-row">
+            <span class="label">Date:</span>
+            <input type="date" id="gameDate" class="date-input" />
+          </div>
+
+          <div class="info-row">
+            <span class="label">Visiting Team:</span>
+            <input
+              type="text"
+              id="visitingTeam"
+              placeholder="Visiting Team"
+              class="team-input" />
+          </div>
+        </div>
+      </header>
+
+      <div class="scorecard-grid">
+        <!-- Score Counters -->
+        <div class="score-counters-container">
+          <div class="score-counter">
+            <h3>Home Team Score</h3>
+            <div class="counter-controls">
+              <button
+                class="counter-btn minus-btn"
+                onclick="decrementScore('home')">
+                -
+              </button>
+              <span class="score-display" id="homeScore">0</span>
+              <button
+                class="counter-btn plus-btn"
+                onclick="incrementScore('home')">
+                +
+              </button>
+            </div>
+          </div>
+
+          <div class="score-counter">
+            <h3>Visiting Team Score</h3>
+            <div class="counter-controls">
+              <button
+                class="counter-btn minus-btn"
+                onclick="decrementScore('visiting')">
+                -
+              </button>
+              <span class="score-display" id="visitingScore">0</span>
+              <button
+                class="counter-btn plus-btn"
+                onclick="incrementScore('visiting')">
+                +
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grid Scroll Container for horizontal scrolling on small screens -->
+        <div class="grid-scroll-container">
+          <!-- Innings Header -->
+          <div class="innings-header">
+            <div class="player-info-header">INNING</div>
+            <div class="inning-cell">1</div>
+            <div class="inning-cell">2</div>
+            <div class="inning-cell">3</div>
+            <div class="inning-cell">4</div>
+            <div class="inning-cell">5</div>
+            <div class="inning-cell">6</div>
+            <div class="inning-cell">7</div>
+            <div class="inning-cell">8</div>
+            <div class="inning-cell">9</div>
+            <div class="inning-cell">10</div>
+            <div class="inning-cell">11</div>
+            <div class="inning-cell">12</div>
+            <div class="inning-cell">13</div>
+            <div class="inning-cell">14</div>
+          </div>
+
+          <!-- Home Team Section -->
+          <div class="team-section home-team">
+            <div class="team-label">HOME TEAM</div>
+
+            <!-- Player Rows -->
+            <div class="player-row" data-player="1">
+              <div class="player-info">
+                <input
+                  type="text"
+                  class="player-name"
+                  placeholder="Player Name" />
+                <input
+                  type="text"
+                  class="player-position"
+                  placeholder="Position" />
+              </div>
+              <div class="inning-cells">
+                <div class="inning-cell" data-inning="1" data-player="1"></div>
+                <div class="inning-cell" data-inning="2" data-player="1"></div>
+                <div class="inning-cell" data-inning="3" data-player="1"></div>
+                <div class="inning-cell" data-inning="4" data-player="1"></div>
+                <div class="inning-cell" data-inning="5" data-player="1"></div>
+                <div class="inning-cell" data-inning="6" data-player="1"></div>
+                <div class="inning-cell" data-inning="7" data-player="1"></div>
+                <div class="inning-cell" data-inning="8" data-player="1"></div>
+                <div class="inning-cell" data-inning="9" data-player="1"></div>
+                <div class="inning-cell" data-inning="10" data-player="1"></div>
+                <div class="inning-cell" data-inning="11" data-player="1"></div>
+                <div class="inning-cell" data-inning="12" data-player="1"></div>
+                <div class="inning-cell" data-inning="13" data-player="1"></div>
+                <div class="inning-cell" data-inning="14" data-player="1"></div>
+              </div>
+            </div>
+
+            <div class="player-row" data-player="2">
+              <div class="player-info">
+                <input
+                  type="text"
+                  class="player-name"
+                  placeholder="Player Name" />
+                <input
+                  type="text"
+                  class="player-position"
+                  placeholder="Position" />
+              </div>
+              <div class="inning-cells">
+                <div class="inning-cell" data-inning="1" data-player="2"></div>
+                <div class="inning-cell" data-inning="2" data-player="2"></div>
+                <div class="inning-cell" data-inning="3" data-player="2"></div>
+                <div class="inning-cell" data-inning="4" data-player="2"></div>
+                <div class="inning-cell" data-inning="5" data-player="2"></div>
+                <div class="inning-cell" data-inning="6" data-player="2"></div>
+                <div class="inning-cell" data-inning="7" data-player="2"></div>
+                <div class="inning-cell" data-inning="8" data-player="2"></div>
+                <div class="inning-cell" data-inning="9" data-player="2"></div>
+                <div class="inning-cell" data-inning="10" data-player="2"></div>
+                <div class="inning-cell" data-inning="11" data-player="2"></div>
+                <div class="inning-cell" data-inning="12" data-player="2"></div>
+                <div class="inning-cell" data-inning="13" data-player="2"></div>
+                <div class="inning-cell" data-inning="14" data-player="2"></div>
+              </div>
+            </div>
+
+            <div class="player-row" data-player="3">
+              <div class="player-info">
+                <input
+                  type="text"
+                  class="player-name"
+                  placeholder="Player Name" />
+                <input
+                  type="text"
+                  class="player-position"
+                  placeholder="Position" />
+              </div>
+              <div class="inning-cells">
+                <div class="inning-cell" data-inning="1" data-player="3"></div>
+                <div class="inning-cell" data-inning="2" data-player="3"></div>
+                <div class="inning-cell" data-inning="3" data-player="3"></div>
+                <div class="inning-cell" data-inning="4" data-player="3"></div>
+                <div class="inning-cell" data-inning="5" data-player="3"></div>
+                <div class="inning-cell" data-inning="6" data-player="3"></div>
+                <div class="inning-cell" data-inning="7" data-player="3"></div>
+                <div class="inning-cell" data-inning="8" data-player="3"></div>
+                <div class="inning-cell" data-inning="9" data-player="3"></div>
+                <div class="inning-cell" data-inning="10" data-player="3"></div>
+                <div class="inning-cell" data-inning="11" data-player="3"></div>
+                <div class="inning-cell" data-inning="12" data-player="3"></div>
+                <div class="inning-cell" data-inning="13" data-player="3"></div>
+                <div class="inning-cell" data-inning="14" data-player="3"></div>
+              </div>
+            </div>
+
+            <div class="player-row" data-player="4">
+              <div class="player-info">
+                <input
+                  type="text"
+                  class="player-name"
+                  placeholder="Player Name" />
+                <input
+                  type="text"
+                  class="player-position"
+                  placeholder="Position" />
+              </div>
+              <div class="inning-cells">
+                <div class="inning-cell" data-inning="1" data-player="4"></div>
+                <div class="inning-cell" data-inning="2" data-player="4"></div>
+                <div class="inning-cell" data-inning="3" data-player="4"></div>
+                <div class="inning-cell" data-inning="4" data-player="4"></div>
+                <div class="inning-cell" data-inning="5" data-player="4"></div>
+                <div class="inning-cell" data-inning="6" data-player="4"></div>
+                <div class="inning-cell" data-inning="7" data-player="4"></div>
+                <div class="inning-cell" data-inning="8" data-player="4"></div>
+                <div class="inning-cell" data-inning="9" data-player="4"></div>
+                <div class="inning-cell" data-inning="10" data-player="4"></div>
+                <div class="inning-cell" data-inning="11" data-player="4"></div>
+                <div class="inning-cell" data-inning="12" data-player="4"></div>
+                <div class="inning-cell" data-inning="13" data-player="4"></div>
+                <div class="inning-cell" data-inning="14" data-player="4"></div>
+              </div>
+            </div>
+
+            <div class="player-row" data-player="5">
+              <div class="player-info">
+                <input
+                  type="text"
+                  class="player-name"
+                  placeholder="Player Name" />
+                <input
+                  type="text"
+                  class="player-position"
+                  placeholder="Position" />
+              </div>
+              <div class="inning-cells">
+                <div class="inning-cell" data-inning="1" data-player="5"></div>
+                <div class="inning-cell" data-inning="2" data-player="5"></div>
+                <div class="inning-cell" data-inning="3" data-player="5"></div>
+                <div class="inning-cell" data-inning="4" data-player="5"></div>
+                <div class="inning-cell" data-inning="5" data-player="5"></div>
+                <div class="inning-cell" data-inning="6" data-player="5"></div>
+                <div class="inning-cell" data-inning="7" data-player="5"></div>
+                <div class="inning-cell" data-inning="8" data-player="5"></div>
+                <div class="inning-cell" data-inning="9" data-player="5"></div>
+                <div class="inning-cell" data-inning="10" data-player="5"></div>
+                <div class="inning-cell" data-inning="11" data-player="5"></div>
+                <div class="inning-cell" data-inning="12" data-player="5"></div>
+                <div class="inning-cell" data-inning="13" data-player="5"></div>
+                <div class="inning-cell" data-inning="14" data-player="5"></div>
+              </div>
+            </div>
+
+            <div class="player-row" data-player="6">
+              <div class="player-info">
+                <input
+                  type="text"
+                  class="player-name"
+                  placeholder="Player Name" />
+                <input
+                  type="text"
+                  class="player-position"
+                  placeholder="Position" />
+              </div>
+              <div class="inning-cells">
+                <div class="inning-cell" data-inning="1" data-player="6"></div>
+                <div class="inning-cell" data-inning="2" data-player="6"></div>
+                <div class="inning-cell" data-inning="3" data-player="6"></div>
+                <div class="inning-cell" data-inning="4" data-player="6"></div>
+                <div class="inning-cell" data-inning="5" data-player="6"></div>
+                <div class="inning-cell" data-inning="6" data-player="6"></div>
+                <div class="inning-cell" data-inning="7" data-player="6"></div>
+                <div class="inning-cell" data-inning="8" data-player="6"></div>
+                <div class="inning-cell" data-inning="9" data-player="6"></div>
+                <div class="inning-cell" data-inning="10" data-player="6"></div>
+                <div class="inning-cell" data-inning="11" data-player="6"></div>
+                <div class="inning-cell" data-inning="12" data-player="6"></div>
+                <div class="inning-cell" data-inning="13" data-player="6"></div>
+                <div class="inning-cell" data-inning="14" data-player="6"></div>
+              </div>
+            </div>
+
+            <div class="player-row" data-player="7">
+              <div class="player-info">
+                <input
+                  type="text"
+                  class="player-name"
+                  placeholder="Player Name" />
+                <input
+                  type="text"
+                  class="player-position"
+                  placeholder="Position" />
+              </div>
+              <div class="inning-cells">
+                <div class="inning-cell" data-inning="1" data-player="7"></div>
+                <div class="inning-cell" data-inning="2" data-player="7"></div>
+                <div class="inning-cell" data-inning="3" data-player="7"></div>
+                <div class="inning-cell" data-inning="4" data-player="7"></div>
+                <div class="inning-cell" data-inning="5" data-player="7"></div>
+                <div class="inning-cell" data-inning="6" data-player="7"></div>
+                <div class="inning-cell" data-inning="7" data-player="7"></div>
+                <div class="inning-cell" data-inning="8" data-player="7"></div>
+                <div class="inning-cell" data-inning="9" data-player="7"></div>
+                <div class="inning-cell" data-inning="10" data-player="7"></div>
+                <div class="inning-cell" data-inning="11" data-player="7"></div>
+                <div class="inning-cell" data-inning="12" data-player="7"></div>
+                <div class="inning-cell" data-inning="13" data-player="7"></div>
+                <div class="inning-cell" data-inning="14" data-player="7"></div>
+              </div>
+            </div>
+
+            <div class="player-row" data-player="8">
+              <div class="player-info">
+                <input
+                  type="text"
+                  class="player-name"
+                  placeholder="Player Name" />
+                <input
+                  type="text"
+                  class="player-position"
+                  placeholder="Position" />
+              </div>
+              <div class="inning-cells">
+                <div class="inning-cell" data-inning="1" data-player="8"></div>
+                <div class="inning-cell" data-inning="2" data-player="8"></div>
+                <div class="inning-cell" data-inning="3" data-player="8"></div>
+                <div class="inning-cell" data-inning="4" data-player="8"></div>
+                <div class="inning-cell" data-inning="5" data-player="8"></div>
+                <div class="inning-cell" data-inning="6" data-player="8"></div>
+                <div class="inning-cell" data-inning="7" data-player="8"></div>
+                <div class="inning-cell" data-inning="8" data-player="8"></div>
+                <div class="inning-cell" data-inning="9" data-player="8"></div>
+                <div class="inning-cell" data-inning="10" data-player="8"></div>
+                <div class="inning-cell" data-inning="11" data-player="8"></div>
+                <div class="inning-cell" data-inning="12" data-player="8"></div>
+                <div class="inning-cell" data-inning="13" data-player="8"></div>
+                <div class="inning-cell" data-inning="14" data-player="8"></div>
+              </div>
+            </div>
+
+            <div class="player-row" data-player="9">
+              <div class="player-info">
+                <input
+                  type="text"
+                  class="player-name"
+                  placeholder="Player Name" />
+                <input
+                  type="text"
+                  class="player-position"
+                  placeholder="Position" />
+              </div>
+              <div class="inning-cells">
+                <div class="inning-cell" data-inning="1" data-player="9"></div>
+                <div class="inning-cell" data-inning="2" data-player="9"></div>
+                <div class="inning-cell" data-inning="3" data-player="9"></div>
+                <div class="inning-cell" data-inning="4" data-player="9"></div>
+                <div class="inning-cell" data-inning="5" data-player="9"></div>
+                <div class="inning-cell" data-inning="6" data-player="9"></div>
+                <div class="inning-cell" data-inning="7" data-player="9"></div>
+                <div class="inning-cell" data-inning="8" data-player="9"></div>
+                <div class="inning-cell" data-inning="9" data-player="9"></div>
+                <div class="inning-cell" data-inning="10" data-player="9"></div>
+                <div class="inning-cell" data-inning="11" data-player="9"></div>
+                <div class="inning-cell" data-inning="12" data-player="9"></div>
+                <div class="inning-cell" data-inning="13" data-player="9"></div>
+                <div class="inning-cell" data-inning="14" data-player="9"></div>
+              </div>
+            </div>
+
+            <div class="player-row" data-player="10">
+              <div class="player-info">
+                <input
+                  type="text"
+                  class="player-name"
+                  placeholder="Player Name" />
+                <input
+                  type="text"
+                  class="player-position"
+                  placeholder="Position" />
+              </div>
+              <div class="inning-cells">
+                <div class="inning-cell" data-inning="1" data-player="10"></div>
+                <div class="inning-cell" data-inning="2" data-player="10"></div>
+                <div class="inning-cell" data-inning="3" data-player="10"></div>
+                <div class="inning-cell" data-inning="4" data-player="10"></div>
+                <div class="inning-cell" data-inning="5" data-player="10"></div>
+                <div class="inning-cell" data-inning="6" data-player="10"></div>
+                <div class="inning-cell" data-inning="7" data-player="10"></div>
+                <div class="inning-cell" data-inning="8" data-player="10"></div>
+                <div class="inning-cell" data-inning="9" data-player="10"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="10"
+                  data-player="10"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="11"
+                  data-player="10"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="12"
+                  data-player="10"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="13"
+                  data-player="10"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="14"
+                  data-player="10"></div>
+              </div>
+            </div>
+
+            <div class="player-row" data-player="11">
+              <div class="player-info">
+                <input
+                  type="text"
+                  class="player-name"
+                  placeholder="Player Name" />
+                <input
+                  type="text"
+                  class="player-position"
+                  placeholder="Position" />
+              </div>
+              <div class="inning-cells">
+                <div class="inning-cell" data-inning="1" data-player="11"></div>
+                <div class="inning-cell" data-inning="2" data-player="11"></div>
+                <div class="inning-cell" data-inning="3" data-player="11"></div>
+                <div class="inning-cell" data-inning="4" data-player="11"></div>
+                <div class="inning-cell" data-inning="5" data-player="11"></div>
+                <div class="inning-cell" data-inning="6" data-player="11"></div>
+                <div class="inning-cell" data-inning="7" data-player="11"></div>
+                <div class="inning-cell" data-inning="8" data-player="11"></div>
+                <div class="inning-cell" data-inning="9" data-player="11"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="10"
+                  data-player="11"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="11"
+                  data-player="11"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="12"
+                  data-player="11"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="13"
+                  data-player="11"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="14"
+                  data-player="11"></div>
+              </div>
+            </div>
+
+            <div class="player-row" data-player="12">
+              <div class="player-info">
+                <input
+                  type="text"
+                  class="player-name"
+                  placeholder="Player Name" />
+                <input
+                  type="text"
+                  class="player-position"
+                  placeholder="Position" />
+              </div>
+              <div class="inning-cells">
+                <div class="inning-cell" data-inning="1" data-player="12"></div>
+                <div class="inning-cell" data-inning="2" data-player="12"></div>
+                <div class="inning-cell" data-inning="3" data-player="12"></div>
+                <div class="inning-cell" data-inning="4" data-player="12"></div>
+                <div class="inning-cell" data-inning="5" data-player="12"></div>
+                <div class="inning-cell" data-inning="6" data-player="12"></div>
+                <div class="inning-cell" data-inning="7" data-player="12"></div>
+                <div class="inning-cell" data-inning="8" data-player="12"></div>
+                <div class="inning-cell" data-inning="9" data-player="12"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="10"
+                  data-player="12"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="11"
+                  data-player="12"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="12"
+                  data-player="12"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="13"
+                  data-player="12"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="14"
+                  data-player="12"></div>
+              </div>
+            </div>
+
+            <div class="player-row" data-player="13">
+              <div class="player-info">
+                <input
+                  type="text"
+                  class="player-name"
+                  placeholder="Player Name" />
+                <input
+                  type="text"
+                  class="player-position"
+                  placeholder="Position" />
+              </div>
+              <div class="inning-cells">
+                <div class="inning-cell" data-inning="1" data-player="13"></div>
+                <div class="inning-cell" data-inning="2" data-player="13"></div>
+                <div class="inning-cell" data-inning="3" data-player="13"></div>
+                <div class="inning-cell" data-inning="4" data-player="13"></div>
+                <div class="inning-cell" data-inning="5" data-player="13"></div>
+                <div class="inning-cell" data-inning="6" data-player="13"></div>
+                <div class="inning-cell" data-inning="7" data-player="13"></div>
+                <div class="inning-cell" data-inning="8" data-player="13"></div>
+                <div class="inning-cell" data-inning="9" data-player="13"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="10"
+                  data-player="13"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="11"
+                  data-player="13"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="12"
+                  data-player="13"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="13"
+                  data-player="13"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="14"
+                  data-player="13"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Visiting Team Section -->
+          <div class="team-section">
+            <div class="team-label">VISITING TEAM</div>
+
+            <!-- Player Rows -->
+            <div class="player-row" data-player="1" data-team="visiting">
+              <div class="player-info">
+                <input
+                  type="text"
+                  class="player-name"
+                  placeholder="Player Name" />
+                <input
+                  type="text"
+                  class="player-position"
+                  placeholder="Position" />
+              </div>
+              <div class="inning-cells">
+                <div
+                  class="inning-cell"
+                  data-inning="1"
+                  data-player="1"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="2"
+                  data-player="1"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="3"
+                  data-player="1"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="4"
+                  data-player="1"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="5"
+                  data-player="1"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="6"
+                  data-player="1"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="7"
+                  data-player="1"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="8"
+                  data-player="1"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="9"
+                  data-player="1"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="10"
+                  data-player="1"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="11"
+                  data-player="1"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="12"
+                  data-player="1"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="13"
+                  data-player="1"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="14"
+                  data-player="1"
+                  data-team="visiting"></div>
+              </div>
+            </div>
+
+            <div class="player-row" data-player="2" data-team="visiting">
+              <div class="player-info">
+                <input
+                  type="text"
+                  class="player-name"
+                  placeholder="Player Name" />
+                <input
+                  type="text"
+                  class="player-position"
+                  placeholder="Position" />
+              </div>
+              <div class="inning-cells">
+                <div
+                  class="inning-cell"
+                  data-inning="1"
+                  data-player="2"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="2"
+                  data-player="2"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="3"
+                  data-player="2"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="4"
+                  data-player="2"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="5"
+                  data-player="2"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="6"
+                  data-player="2"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="7"
+                  data-player="2"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="8"
+                  data-player="2"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="9"
+                  data-player="2"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="10"
+                  data-player="2"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="11"
+                  data-player="2"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="12"
+                  data-player="2"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="13"
+                  data-player="2"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="14"
+                  data-player="2"
+                  data-team="visiting"></div>
+              </div>
+            </div>
+
+            <div class="player-row" data-player="3" data-team="visiting">
+              <div class="player-info">
+                <input
+                  type="text"
+                  class="player-name"
+                  placeholder="Player Name" />
+                <input
+                  type="text"
+                  class="player-position"
+                  placeholder="Position" />
+              </div>
+              <div class="inning-cells">
+                <div
+                  class="inning-cell"
+                  data-inning="1"
+                  data-player="3"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="2"
+                  data-player="3"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="3"
+                  data-player="3"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="4"
+                  data-player="3"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="5"
+                  data-player="3"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="6"
+                  data-player="3"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="7"
+                  data-player="3"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="8"
+                  data-player="3"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="9"
+                  data-player="3"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="10"
+                  data-player="3"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="11"
+                  data-player="3"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="12"
+                  data-player="3"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="13"
+                  data-player="3"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="14"
+                  data-player="3"
+                  data-team="visiting"></div>
+              </div>
+            </div>
+
+            <div class="player-row" data-player="4" data-team="visiting">
+              <div class="player-info">
+                <input
+                  type="text"
+                  class="player-name"
+                  placeholder="Player Name" />
+                <input
+                  type="text"
+                  class="player-position"
+                  placeholder="Position" />
+              </div>
+              <div class="inning-cells">
+                <div
+                  class="inning-cell"
+                  data-inning="1"
+                  data-player="4"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="2"
+                  data-player="4"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="3"
+                  data-player="4"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="4"
+                  data-player="4"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="5"
+                  data-player="4"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="6"
+                  data-player="4"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="7"
+                  data-player="4"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="8"
+                  data-player="4"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="9"
+                  data-player="4"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="10"
+                  data-player="4"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="11"
+                  data-player="4"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="12"
+                  data-player="4"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="13"
+                  data-player="4"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="14"
+                  data-player="4"
+                  data-team="visiting"></div>
+              </div>
+            </div>
+
+            <div class="player-row" data-player="5" data-team="visiting">
+              <div class="player-info">
+                <input
+                  type="text"
+                  class="player-name"
+                  placeholder="Player Name" />
+                <input
+                  type="text"
+                  class="player-position"
+                  placeholder="Position" />
+              </div>
+              <div class="inning-cells">
+                <div
+                  class="inning-cell"
+                  data-inning="1"
+                  data-player="5"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="2"
+                  data-player="5"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="3"
+                  data-player="5"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="4"
+                  data-player="5"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="5"
+                  data-player="5"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="6"
+                  data-player="5"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="7"
+                  data-player="5"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="8"
+                  data-player="5"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="9"
+                  data-player="5"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="10"
+                  data-player="5"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="11"
+                  data-player="5"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="12"
+                  data-player="5"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="13"
+                  data-player="5"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="14"
+                  data-player="5"
+                  data-team="visiting"></div>
+              </div>
+            </div>
+
+            <div class="player-row" data-player="6" data-team="visiting">
+              <div class="player-info">
+                <input
+                  type="text"
+                  class="player-name"
+                  placeholder="Player Name" />
+                <input
+                  type="text"
+                  class="player-position"
+                  placeholder="Position" />
+              </div>
+              <div class="inning-cells">
+                <div
+                  class="inning-cell"
+                  data-inning="1"
+                  data-player="6"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="2"
+                  data-player="6"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="3"
+                  data-player="6"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="4"
+                  data-player="6"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="5"
+                  data-player="6"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="6"
+                  data-player="6"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="7"
+                  data-player="6"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="8"
+                  data-player="6"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="9"
+                  data-player="6"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="10"
+                  data-player="6"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="11"
+                  data-player="6"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="12"
+                  data-player="6"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="13"
+                  data-player="6"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="14"
+                  data-player="6"
+                  data-team="visiting"></div>
+              </div>
+            </div>
+
+            <div class="player-row" data-player="7" data-team="visiting">
+              <div class="player-info">
+                <input
+                  type="text"
+                  class="player-name"
+                  placeholder="Player Name" />
+                <input
+                  type="text"
+                  class="player-position"
+                  placeholder="Position" />
+              </div>
+              <div class="inning-cells">
+                <div
+                  class="inning-cell"
+                  data-inning="1"
+                  data-player="7"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="2"
+                  data-player="7"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="3"
+                  data-player="7"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="4"
+                  data-player="7"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="5"
+                  data-player="7"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="6"
+                  data-player="7"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="7"
+                  data-player="7"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="8"
+                  data-player="7"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="9"
+                  data-player="7"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="10"
+                  data-player="7"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="11"
+                  data-player="7"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="12"
+                  data-player="7"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="13"
+                  data-player="7"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="14"
+                  data-player="7"
+                  data-team="visiting"></div>
+              </div>
+            </div>
+
+            <div class="player-row" data-player="8" data-team="visiting">
+              <div class="player-info">
+                <input
+                  type="text"
+                  class="player-name"
+                  placeholder="Player Name" />
+                <input
+                  type="text"
+                  class="player-position"
+                  placeholder="Position" />
+              </div>
+              <div class="inning-cells">
+                <div
+                  class="inning-cell"
+                  data-inning="1"
+                  data-player="8"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="2"
+                  data-player="8"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="3"
+                  data-player="8"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="4"
+                  data-player="8"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="5"
+                  data-player="8"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="6"
+                  data-player="8"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="7"
+                  data-player="8"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="8"
+                  data-player="8"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="9"
+                  data-player="8"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="10"
+                  data-player="8"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="11"
+                  data-player="8"
+                  data-team="visiting"></div>
+                <div class="inning-cell" data-inning="12" data-player="8"></div>
+                <div class="inning-cell" data-inning="13" data-player="8"></div>
+                <div class="inning-cell" data-inning="14" data-player="8"></div>
+              </div>
+            </div>
+
+            <div class="player-row" data-player="9" data-team="visiting">
+              <div class="player-info">
+                <input
+                  type="text"
+                  class="player-name"
+                  placeholder="Player Name" />
+                <input
+                  type="text"
+                  class="player-position"
+                  placeholder="Position" />
+              </div>
+              <div class="inning-cells">
+                <div
+                  class="inning-cell"
+                  data-inning="1"
+                  data-player="9"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="2"
+                  data-player="9"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="3"
+                  data-player="9"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="4"
+                  data-player="9"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="5"
+                  data-player="9"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="6"
+                  data-player="9"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="7"
+                  data-player="9"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="8"
+                  data-player="9"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="9"
+                  data-player="9"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="10"
+                  data-player="9"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="11"
+                  data-player="9"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="12"
+                  data-player="9"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="13"
+                  data-player="9"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="14"
+                  data-player="9"
+                  data-team="visiting"></div>
+              </div>
+            </div>
+
+            <div class="player-row" data-player="10" data-team="visiting">
+              <div class="player-info">
+                <input
+                  type="text"
+                  class="player-name"
+                  placeholder="Player Name" />
+                <input
+                  type="text"
+                  class="player-position"
+                  placeholder="Position" />
+              </div>
+              <div class="inning-cells">
+                <div
+                  class="inning-cell"
+                  data-inning="1"
+                  data-player="10"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="2"
+                  data-player="10"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="3"
+                  data-player="10"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="4"
+                  data-player="10"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="5"
+                  data-player="10"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="6"
+                  data-player="10"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="7"
+                  data-player="10"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="8"
+                  data-player="10"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="9"
+                  data-player="10"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="10"
+                  data-player="10"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="11"
+                  data-player="10"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="12"
+                  data-player="10"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="13"
+                  data-player="10"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="14"
+                  data-player="10"
+                  data-team="visiting"></div>
+              </div>
+            </div>
+
+            <div class="player-row" data-player="11" data-team="visiting">
+              <div class="player-info">
+                <input
+                  type="text"
+                  class="player-name"
+                  placeholder="Player Name" />
+                <input
+                  type="text"
+                  class="player-position"
+                  placeholder="Position" />
+              </div>
+              <div class="inning-cells">
+                <div
+                  class="inning-cell"
+                  data-inning="1"
+                  data-player="11"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="2"
+                  data-player="11"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="3"
+                  data-player="11"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="4"
+                  data-player="11"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="5"
+                  data-player="11"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="6"
+                  data-player="11"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="7"
+                  data-player="11"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="8"
+                  data-player="11"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="9"
+                  data-player="11"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="10"
+                  data-player="11"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="11"
+                  data-player="11"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="12"
+                  data-player="11"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="13"
+                  data-player="11"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="14"
+                  data-player="11"
+                  data-team="visiting"></div>
+              </div>
+            </div>
+
+            <div class="player-row" data-player="12" data-team="visiting">
+              <div class="player-info">
+                <input
+                  type="text"
+                  class="player-name"
+                  placeholder="Player Name" />
+                <input
+                  type="text"
+                  class="player-position"
+                  placeholder="Position" />
+              </div>
+              <div class="inning-cells">
+                <div
+                  class="inning-cell"
+                  data-inning="1"
+                  data-player="12"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="2"
+                  data-player="12"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="3"
+                  data-player="12"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="4"
+                  data-player="12"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="5"
+                  data-player="12"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="6"
+                  data-player="12"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="7"
+                  data-player="12"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="8"
+                  data-player="12"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="9"
+                  data-player="12"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="10"
+                  data-player="12"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="11"
+                  data-player="12"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="12"
+                  data-player="12"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="13"
+                  data-player="12"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="14"
+                  data-player="12"
+                  data-team="visiting"></div>
+              </div>
+            </div>
+
+            <div class="player-row" data-player="13" data-team="visiting">
+              <div class="player-info">
+                <input
+                  type="text"
+                  class="player-name"
+                  placeholder="Player Name" />
+                <input
+                  type="text"
+                  class="player-position"
+                  placeholder="Position" />
+              </div>
+              <div class="inning-cells">
+                <div
+                  class="inning-cell"
+                  data-inning="1"
+                  data-player="13"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="2"
+                  data-player="13"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="3"
+                  data-player="13"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="4"
+                  data-player="13"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="5"
+                  data-player="13"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="6"
+                  data-player="13"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="7"
+                  data-player="13"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="8"
+                  data-player="13"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="9"
+                  data-player="13"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="10"
+                  data-player="13"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="11"
+                  data-player="13"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="12"
+                  data-player="13"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="13"
+                  data-player="13"
+                  data-team="visiting"></div>
+                <div
+                  class="inning-cell"
+                  data-inning="14"
+                  data-player="13"
+                  data-team="visiting"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End grid-scroll-container -->
+      </div>
+
+      <!-- Game Notes Section -->
+      <div class="game-notes">
+        <h3>Game Notes</h3>
+        <textarea
+          id="gameNotes"
+          placeholder="Enter game notes, highlights, or special events here..."></textarea>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <img
+          src="apple-touch-icon.png"
+          alt="Baseball Scorecard"
+          class="action-icon" />
+        <button id="clearScorecard" class="btn btn-secondary">
+          Clear Scorecard
+        </button>
+        <button id="printScorecard" class="btn btn-primary">
+          Print Scorecard
+        </button>
+        <button id="saveScorecard" class="btn btn-success">
+          Save Scorecard
+        </button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
